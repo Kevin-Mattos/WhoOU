@@ -29,6 +29,10 @@ object Libs {
 	private const val okHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3_version}"
 	private const val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3_version}"
 
+	private const val roomLib = "androidx.room:room-runtime:${Versions.room_version}\""
+	private const val roomCompilerLib = "androidx.room:room-compiler:${Versions.room_version}"
+	private const val roomCoroutinesLib = "androidx.room:room-ktx:${Versions.room_version}"
+
 	//tests
 	private const val junit = "junit:junit:${Versions.junit_version}"
 	private const val ext_junit = "androidx.test.ext:junit:${Versions.ext_junit_version}"
@@ -77,6 +81,15 @@ object Libs {
 		okHttp3,
 		okHttpLogging,
 	)
+
+	val room = listOf(
+		roomLib,
+		roomCoroutinesLib
+	)
+
+	val roomCompiler = listOf(
+		roomCompilerLib
+	)
 }
 
 
@@ -120,4 +133,9 @@ fun DependencyHandler.koin() {
 
 fun DependencyHandler.retrofit() {
 	api(Libs.retrofit)
+}
+
+fun DependencyHandler.room() {
+	implementation(Libs.room)
+	kapt(Libs.roomCompiler)
 }

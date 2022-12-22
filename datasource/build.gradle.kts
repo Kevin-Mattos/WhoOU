@@ -1,6 +1,7 @@
 plugins {
 	id(BuildPlugins.androidLibrary)
 	id(BuildPlugins.kotlinAndroid)
+	id(BuildPlugins.kapt)
 }
 
 android {
@@ -30,4 +31,5 @@ dependencies {
 
 	koin()
 	retrofit()
+	room()
 }
