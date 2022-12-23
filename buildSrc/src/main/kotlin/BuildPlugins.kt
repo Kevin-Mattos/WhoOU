@@ -4,4 +4,5 @@ object BuildPlugins {
 	const val kotlinAndroid = "org.jetbrains.kotlin.android"
 	const val ktLint = "org.jlleitschuh.gradle.ktlint"
 	const val detect = "io.gitlab.arturbosch.detekt"
+	const val kapt = "kotlin-kapt"
 }
