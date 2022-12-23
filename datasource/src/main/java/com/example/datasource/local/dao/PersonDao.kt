@@ -3,6 +3,7 @@ package com.example.datasource.local.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.datasource.local.entities.MoneyLentWithPerson
 import com.example.datasource.local.entities.PersonEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -13,4 +14,7 @@ interface PersonDao {
 
 	@Query("SELECT * FROM PERSON")
 	fun getAll(): Flow<List<PersonEntity>>
+
+	@Query("SELECT * from person")
+	fun peopleWithOwned(): Flow<List<MoneyLentWithPerson>>
 }

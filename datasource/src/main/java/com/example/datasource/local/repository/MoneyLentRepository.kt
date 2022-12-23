@@ -7,7 +7,5 @@ class MoneyLentRepository(private val moneyDao: MoneyDao) {
 
 	fun getAll() = moneyDao.getAll()
 
-	fun getAllWithUser() = moneyDao.getAllWithUser()
-
 	suspend fun insertMoneyLent(moneyLent: MoneyLentEntity) = moneyDao.insertMoneyLent(moneyLent)
 }

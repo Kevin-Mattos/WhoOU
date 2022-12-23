@@ -3,7 +3,6 @@ package com.example.coreui
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -20,27 +19,16 @@ class SampleFragment : ComposeFragment() {
 
 	@Composable
 	override fun ToContent() {
-		val state by viewModel.items.collectAsState(initial = emptyMap())
-		val t by viewModel.t.collectAsState(initial = emptyList())
+		val state by viewModel.items.collectAsState(initial = emptyList())
 
-		val keys = state.keys.toList()
-		val items = state.entries
-		val a = t
 		LazyColumn {
-			items(state.entries.size) {
-				val person = keys[it]
-				val item = state[person]
+			items(state.size) {
+				val person = state[it]
 				Row {
 					Text(modifier = Modifier.clickable {
 						viewModel.insert()
 
-					}, text = person.name)
-
-					Text(modifier = Modifier.clickable {
-						viewModel.insert()
-
-					}, text = "deve: ${item?.sumOf { it.value }}")
-
+					}, text = person.toString())
 				}
 			}
 		}
@@ -50,12 +38,11 @@ class SampleFragment : ComposeFragment() {
 class SampleStateViewModel(private val service: MoneyLentRepository) :
 	BaseViewModel() {
 
-	val items = service.getAllWithUser()
-	val t = service.getAll()
+	val items = service.getAll()
 
 	fun insert() {
 		launchComputing {
-			service.insertMoneyLent(MoneyLentEntity(value = 33.31, personId = 2))
+			service.insertMoneyLent(MoneyLentEntity(value = 33.31, personId = 3))
 		}
 	}
 }
